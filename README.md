@@ -6,7 +6,7 @@
 
 **Your Mac’s smart second dock — live widgets, Claude built in, free and open source.**
 
-[![Download beta](https://img.shields.io/github/v/release/shreyansa98/Dockside?include_prereleases&label=download&color=D97757)](https://github.com/shreyansa98/Dockside/releases/latest)
+[![Download beta](https://img.shields.io/github/v/release/shreyansa98/Dockside?include_prereleases&label=download&color=D97757)](https://github.com/shreyansa98/Dockside/releases)
 [![Downloads](https://img.shields.io/github/downloads/shreyansa98/Dockside/total?color=34C759)](https://github.com/shreyansa98/Dockside/releases)
 [![Stars](https://img.shields.io/github/stars/shreyansa98/Dockside?style=flat&color=FFCC00)](https://github.com/shreyansa98/Dockside/stargazers)
 [![Build](https://github.com/shreyansa98/Dockside/actions/workflows/ci.yml/badge.svg)](https://github.com/shreyansa98/Dockside/actions/workflows/ci.yml)
@@ -15,7 +15,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 ![Status: public beta](https://img.shields.io/badge/status-public%20beta-orange)
 
-[**Download the beta**](https://github.com/shreyansa98/Dockside/releases/latest) · [Features](#-34-widgets) · [Install](#-install) · [Permissions](#-permissions--privacy) · [Contribute](#-contributing)
+[**⬇️ Download the beta**](https://github.com/shreyansa98/Dockside/releases/download/v0.1.0-beta/Dockside-0.1.0-beta.dmg) · [Features](#-34-widgets) · [Install](#-install) · [Permissions](#-permissions--privacy) · [Contribute](#-contributing)
 
 <br>
 
@@ -80,7 +80,7 @@ Chat uses your own [Anthropic API key](https://console.anthropic.com/settings/ke
 
 ### Download (recommended)
 
-1. Download **[Dockside-0.1.0-beta.dmg](https://github.com/shreyansa98/Dockside/releases/latest)** from the latest release.
+1. Download **[Dockside-0.1.0-beta.dmg](https://github.com/shreyansa98/Dockside/releases/download/v0.1.0-beta/Dockside-0.1.0-beta.dmg)** (3.7 MB) — or pick any version on the [Releases page](https://github.com/shreyansa98/Dockside/releases).
 2. Open it and drag **Dockside** into **Applications**.
 3. Open Dockside from Applications. A dock icon appears in your menu bar and Dockside peeks in at the bottom of your screen.
 
