@@ -1,0 +1,35 @@
+name: 🧩 Widget idea
+description: Suggest a new widget for the dock.
+labels: ["widget idea", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: Great widgets are glanceable, useful many times a day, and fit in a 64-pt tall tile.
+  - type: input
+    id: name
+    attributes:
+      label: Widget name
+      placeholder: e.g. Linear issues
+    validations:
+      required: true
+  - type: textarea
+    id: shows
+    attributes:
+      label: What does the tile show at a glance?
+    validations:
+      required: true
+  - type: textarea
+    id: click
+    attributes:
+      label: What happens when you click it?
+  - type: textarea
+    id: data
+    attributes:
+      label: Where does the data come from?
+      description: Local only, a public API, or an account/API key? Any macOS permission needed?
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Want to build it?
+      options:
+        - label: I'd like to implement this myself (see CONTRIBUTING.md ▸ Add a widget in 5 steps)
