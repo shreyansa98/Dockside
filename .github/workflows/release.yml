@@ -15,7 +15,7 @@ jobs:
   dmg:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build DMG
         run: ./build.sh --dmg --no-install
       - name: Create draft pre-release
