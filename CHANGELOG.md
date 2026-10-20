@@ -2,6 +2,15 @@
 
 All notable changes to Dockside are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.2.2-beta] — 2026-10-20
+
+### Fixed
+- When a Netflix or JioHotstar video went full screen, the picture-in-picture window and the dock floated on top of it. Both now fade out and ignore clicks until full screen ends.
+- Pages that open a blank pop-up and fill it in later no longer wipe the page you were on.
+
+### Added
+- When a streaming site reports a playback error, the picture-in-picture window says so and offers **Open in browser**.
+
 ## [0.2.1-beta] — 2026-10-20
 
 ### Fixed

@@ -6,8 +6,8 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-VERSION="0.2.1"
-BUILD_NUMBER="3"
+VERSION="0.2.2"
+BUILD_NUMBER="4"
 APP="build/Dockside.app"
 MAKE_DMG=0
 INSTALL=1

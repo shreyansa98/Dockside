@@ -66,6 +66,8 @@ final class DockWindowController: NSObject {
     private var edgeDwell: TimeInterval = 0
     private var awayTime: TimeInterval = 0
     private var peekUntil = Date.distantPast
+    /// A Watch video is full screen; the dock would float above it.
+    private var videoFullscreen = false
 
     override init() {
         panel = DockPanel(contentRect: NSRect(x: 0, y: 0, width: 400, height: 80),
@@ -96,6 +98,12 @@ final class DockWindowController: NSObject {
 
         NotificationCenter.default.publisher(for: NSWindow.didMoveNotification, object: panel)
             .sink { [weak self] _ in self?.rememberFloatingPosition() }
+            .store(in: &bag)
+
+        VideoPlayer.shared.$inFullscreen
+            .removeDuplicates()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] busy in self?.videoFullscreenChanged(busy) }
             .store(in: &bag)
 
         // The system Dock can grow, shrink or change auto-hide without a screen-change notification.
@@ -219,7 +227,16 @@ final class DockWindowController: NSObject {
 
     // MARK: Hover to reveal
 
+    private func videoFullscreenChanged(_ busy: Bool) {
+        guard busy != videoFullscreen else { return }
+        videoFullscreen = busy
+        // Faded rather than ordered out: a video playing in the dock tile returns here when full screen ends.
+        panel.ignoresMouseEvents = busy
+        panel.alphaValue = busy || !revealed ? 0 : 1
+    }
+
     private func trackPointer() {
+        guard !videoFullscreen else { return }
         // SwiftUI has no drag-cancelled callback; once the button is up, any widget drag is over.
         if DockDragState.shared.dragging != nil && NSEvent.pressedMouseButtons == 0 {
             DockDragState.shared.dragging = nil
@@ -275,7 +292,7 @@ final class DockWindowController: NSObject {
     }
 
     private func setRevealed(_ show: Bool) {
-        guard let screen else { return }
+        guard let screen, !videoFullscreen else { return }
         if show == revealed && (show == panel.isVisible) { return }
         revealed = show
         awayTime = 0

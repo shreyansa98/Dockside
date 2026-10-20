@@ -87,6 +87,10 @@ final class VideoPlayer: NSObject, ObservableObject, WKScriptMessageHandler, WKN
       function post(m){ try { webkit.messageHandlers.dockside.postMessage(m); } catch (e) {} }
       ['play','playing'].forEach(function(t){ document.addEventListener(t, function(e){ if (e.target && e.target.tagName === 'VIDEO') post({type:'state', playing:true}); }, true); });
       ['pause','ended'].forEach(function(t){ document.addEventListener(t, function(e){ if (e.target && e.target.tagName === 'VIDEO') post({type:'state', playing:false}); }, true); });
+      document.addEventListener('error', function(e){ var v = e.target; if (v && v.tagName === 'VIDEO' && v.error) post({type:'diag', text:'video error ' + v.error.code + ' ' + (v.error.message || '')}); }, true);
+      ['encrypted','waitingforkey'].forEach(function(t){ document.addEventListener(t, function(e){ post({type:'diag', text:t}); }, true); });
+      window.addEventListener('unhandledrejection', function(e){ var r = e.reason || {}; post({type:'diag', text:'rejection ' + (r.name || '') + ' ' + (r.message || r)}); });
+      var ce = console.error; console.error = function(){ post({type:'diag', text:'console ' + [].slice.call(arguments).join(' ').slice(0, 300)}); ce.apply(console, arguments); };
     })();
     """
 
@@ -110,7 +114,12 @@ final class VideoPlayer: NSObject, ObservableObject, WKScriptMessageHandler, WKN
 
         fullscreenObserver = webView.observe(\.fullscreenState, options: [.initial, .new]) { [weak self] web, _ in
             let busy = web.fullscreenState != .notInFullscreen
-            DispatchQueue.main.async { self?.inFullscreen = busy }
+            DispatchQueue.main.async {
+                guard let self, self.inFullscreen != busy else { return }
+                self.inFullscreen = busy
+                // The PiP window floats above WebKit's full-screen window, so it steps aside until full screen ends.
+                PiPWindowController.shared.setSuspended(busy)
+            }
         }
 
         // YouTube's own controls are hidden, so poll its time for Dockside's progress bars.
@@ -223,6 +232,8 @@ final class VideoPlayer: NSObject, ObservableObject, WKScriptMessageHandler, WKN
     }
 
     private var currentYouTubeID: String?
+    /// Recent page errors, for diagnosing streaming sites.
+    static var diagLog: [String] = []
 
     static func youtubeHTML(videoID: String) -> String {
         let safeID = videoID.filter { $0.isLetter || $0.isNumber || $0 == "-" || $0 == "_" }
@@ -257,6 +268,12 @@ final class VideoPlayer: NSObject, ObservableObject, WKScriptMessageHandler, WKN
         DispatchQueue.main.async {
             switch type {
             case "state": self.isPlaying = m["playing"] as? Bool ?? false
+            case "diag":
+                guard let t = m["text"] as? String else { break }
+                Self.diagLog = (Self.diagLog + [t]).suffix(60)
+                if t.hasPrefix("video error"), let s = self.source, s != .youtube {
+                    self.error = String(localized: "\(s.title) couldn’t play this video (\(t)). Try Open in browser.")
+                }
             case "ready":
                 if let t = m["title"] as? String, !t.isEmpty { self.title = t }
             case "error":
@@ -269,6 +286,10 @@ final class VideoPlayer: NSObject, ObservableObject, WKScriptMessageHandler, WKN
         }
     }
 
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        if source != .youtube { error = nil }
+    }
+
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if source != .youtube, let t = webView.title, !t.isEmpty { title = t }
     }
@@ -276,7 +297,8 @@ final class VideoPlayer: NSObject, ObservableObject, WKScriptMessageHandler, WKN
     // Streaming sites open sign-in and player pages in new windows; keep them in the same view.
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration,
                  for action: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        if let u = action.request.url { webView.load(URLRequest(url: u)) }
+        // Pages that open a blank window and fill it in later would otherwise wipe the current page.
+        if let u = action.request.url, u.scheme?.hasPrefix("http") == true { webView.load(URLRequest(url: u)) }
         return nil
     }
 
@@ -384,6 +406,13 @@ final class PiPWindowController: NSObject, NSWindowDelegate {
 
     func hide() { panel?.orderOut(nil) }
 
+    /// Turns the window invisible and click-through while a video is full screen. It stays ordered in, because
+    /// WebKit returns the video to it when full screen ends.
+    func setSuspended(_ suspended: Bool) {
+        panel?.alphaValue = suspended ? 0 : 1
+        panel?.ignoresMouseEvents = suspended
+    }
+
     private func build() {
         let p = NSPanel(contentRect: NSRect(x: 0, y: 0, width: 480, height: 270),
                         styleMask: [.titled, .closable, .resizable, .fullSizeContentView],
@@ -416,6 +445,18 @@ private struct PiPView: View {
     var body: some View {
         ZStack {
             VideoSlot(placement: .floating)
+            if let message = player.error {
+                VStack(spacing: 10) {
+                    Label(message, systemImage: "exclamationmark.triangle.fill")
+                        .font(.system(size: 12, weight: .medium)).foregroundStyle(.white)
+                        .multilineTextAlignment(.center)
+                    Button(String(localized: "Open in browser")) { player.openInBrowser() }
+                        .buttonStyle(PillButtonStyle(tint: player.source?.tint ?? .red))
+                }
+                .padding(14)
+                .background(RoundedRectangle(cornerRadius: 12).fill(.black.opacity(0.75)))
+                .padding(20)
+            }
             if hover {
                 VStack {
                     HStack(spacing: 6) {

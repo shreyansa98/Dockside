@@ -15,7 +15,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 ![Status: public beta](https://img.shields.io/badge/status-public%20beta-orange)
 
-[**⬇️ Download the beta**](https://github.com/shreyansa98/Dockside/releases/download/v0.2.1-beta/Dockside-0.2.1-beta.dmg) · [Features](#-36-widgets) · [Install](#-install) · [Permissions](#-permissions--privacy) · [Contribute](#-contributing)
+[**⬇️ Download the beta**](https://github.com/shreyansa98/Dockside/releases/download/v0.2.2-beta/Dockside-0.2.2-beta.dmg) · [Features](#-36-widgets) · [Install](#-install) · [Permissions](#-permissions--privacy) · [Contribute](#-contributing)
 
 <br>
 
@@ -100,7 +100,7 @@ Update later with `brew upgrade --cask dockside`.
 
 ### Download
 
-1. Download **[Dockside-0.2.1-beta.dmg](https://github.com/shreyansa98/Dockside/releases/download/v0.2.1-beta/Dockside-0.2.1-beta.dmg)** (4 MB) — or pick any version on the [Releases page](https://github.com/shreyansa98/Dockside/releases).
+1. Download **[Dockside-0.2.2-beta.dmg](https://github.com/shreyansa98/Dockside/releases/download/v0.2.2-beta/Dockside-0.2.2-beta.dmg)** (4 MB) — or pick any version on the [Releases page](https://github.com/shreyansa98/Dockside/releases).
 2. Open it and drag **Dockside** into **Applications**.
 3. Open Dockside from Applications. A dock icon appears in your menu bar and Dockside peeks in at the bottom of your screen.
 
