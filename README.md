@@ -90,7 +90,15 @@ The same player moves between the dock and the window, so playback never restart
 
 ## 📦 Install
 
-### Download (recommended)
+### Homebrew
+
+```sh
+brew install --cask shreyansa98/tap/dockside
+```
+
+Update later with `brew upgrade --cask dockside`.
+
+### Download
 
 1. Download **[Dockside-0.2.0-beta.dmg](https://github.com/shreyansa98/Dockside/releases/download/v0.2.0-beta/Dockside-0.2.0-beta.dmg)** (4 MB) — or pick any version on the [Releases page](https://github.com/shreyansa98/Dockside/releases).
 2. Open it and drag **Dockside** into **Applications**.
@@ -141,7 +149,7 @@ Needs the Xcode Command Line Tools (`xcode-select --install`). No Xcode project,
 
 ### Updating and uninstalling
 
-- **Update:** download the new DMG and replace the app. Your settings are kept.
+- **Update:** `brew upgrade --cask dockside`, or download the new DMG and replace the app. Your settings are kept.
 - **Uninstall:** quit Dockside from its menu bar icon, then delete:
   - `/Applications/Dockside.app`
   - `~/Library/Application Support/Dockside/` (settings, chats, artifacts)
@@ -187,7 +195,7 @@ No analytics. No crash reporting. No account. Clipboard history is kept in memor
 ## 🗺 Roadmap
 
 - [ ] Signed & notarized builds (no more *Open Anyway*)
-- [ ] Homebrew cask: `brew install --cask dockside`
+- [x] Homebrew: `brew install --cask shreyansa98/tap/dockside`
 - [ ] Auto-update via Sparkle
 - [x] Multi-display support (follow the pointer)
 - [x] Drag-and-drop widget reordering right on the dock

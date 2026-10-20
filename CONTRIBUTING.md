@@ -97,3 +97,9 @@ UI text in Swift should be a literal in a SwiftUI view (`Text("Hello")`) or `Str
 4. CI must be green. A maintainer will review — thanks for your patience!
 
 By contributing, you agree that your contributions are licensed under the [MIT License](LICENSE).
+
+## Releasing (maintainers)
+
+1. Bump `VERSION` and `BUILD_NUMBER` in `build.sh`; move *Unreleased* in `CHANGELOG.md` under the new version.
+2. `./build.sh --dmg --no-install`, then publish `build/Dockside-<version>-beta.dmg` and its `.sha256` as a GitHub pre-release tagged `v<version>-beta` (or run the **Release DMG** workflow).
+3. Update `version` and `sha256` in [shreyansa98/homebrew-tap](https://github.com/shreyansa98/homebrew-tap/blob/main/Casks/dockside.rb).
