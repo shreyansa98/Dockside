@@ -5,6 +5,7 @@ All notable changes to Dockside are documented here. The format follows [Keep a 
 ## [Unreleased]
 
 ### Added
+- **Watch** widget: search YouTube and play videos inside the dock bar or in a floating picture-in-picture window; Netflix and JioHotstar in the same player (#6).
 - **Countdown** widget — days until a date you pick, with quick presets (#1).
 - **Drag to reorder** widgets right on the dock (#3).
 - **Multiple displays:** Settings ▸ Appearance ▸ Display ▸ *Follow the pointer* (#4).

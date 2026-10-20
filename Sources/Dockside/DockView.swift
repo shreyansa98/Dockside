@@ -212,6 +212,7 @@ struct WidgetHost: View {
         case .calculator: CalculatorWidget()
         case .github: GitHubWidget()
         case .claude: ClaudeWidget()
+        case .watch: WatchWidget()
         }
     }
 

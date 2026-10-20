@@ -39,6 +39,7 @@
 "Automatic (based on your network)" = "Automático (según tu red)";
 "Auto‑hide" = "Ocultar automáticamente";
 "BREAK" = "DESCANSO";
+"Back" = "Atrás";
 "Battery" = "Batería";
 "Behavior" = "Comportamiento";
 "Bookmarks" = "Marcadores";
@@ -67,6 +68,7 @@
 "Clipboard" = "Portapapeles";
 "Clipboard History" = "Historial del portapapeles";
 "Clock" = "Reloj";
+"Close" = "Cerrar";
 "Color Picker" = "Selector de color";
 "Connect calendar" = "Conectar calendario";
 "Control YouTube Music, Spotify or Apple Music." = "Controla YouTube Music, Spotify o Apple Music.";
@@ -78,6 +80,7 @@
 "Copy note" = "Copiar nota";
 "Copy source" = "Copiar código";
 "Copy to clipboard instead of saving" = "Copiar al portapapeles en vez de guardar";
+"Couldn’t load YouTube results. Check your connection and try again." = "No se pudieron cargar los resultados de YouTube. Revisa tu conexión e inténtalo de nuevo.";
 "Countdown" = "Cuenta atrás";
 "Create Folder" = "Crear carpeta";
 "Creator & Utility" = "Creatividad y utilidades";
@@ -119,6 +122,7 @@
 "File Shelf" = "Estante de archivos";
 "Filter" = "Filtrar";
 "Find apps, files and the web instantly." = "Encuentra apps, archivos y webs al instante.";
+"Fit video" = "Ajustar vídeo";
 "Focus & Health" = "Enfoque y salud";
 "Focus sessions with breaks." = "Sesiones de enfoque con descansos.";
 "Folder name" = "Nombre de la carpeta";
@@ -147,6 +151,7 @@
 "Keep above windows" = "Mantener sobre las ventanas";
 "Keep an eye on another city's time." = "Sigue la hora de otra ciudad.";
 "Keep clipboard history" = "Guardar historial del portapapeles";
+"LIVE" = "EN DIRECTO";
 "Large" = "Grande";
 "Launch Dockside at login" = "Abrir Dockside al iniciar sesión";
 "Launch your favorite apps in one click." = "Abre tus apps favoritas con un clic.";
@@ -206,9 +211,13 @@
 "Pause" = "Pausa";
 "Permissions" = "Permisos";
 "Pick any color on screen, copy as hex." = "Elige cualquier color de la pantalla y cópialo en hex.";
+"Picture in picture" = "Imagen dentro de imagen";
 "Play" = "Reproducir";
 "Play Latest Memo" = "Reproducir la última nota";
+"Play in picture-in-picture" = "Reproducir en imagen dentro de imagen";
+"Play in the dock" = "Reproducir en el dock";
 "Play music.youtube.com in Chrome, Brave, Edge or Safari. The first time, macOS asks to let Dockside control your browser." = "Reproduce music.youtube.com en Chrome, Brave, Edge o Safari. La primera vez, macOS te pedirá permiso para que Dockside controle el navegador.";
+"Playing in picture-in-picture" = "En imagen dentro de imagen";
 "Pomodoro" = "Pomodoro";
 "Position" = "Posición";
 "Power Adapter" = "Adaptador de corriente";
@@ -242,8 +251,10 @@
 "Save Key" = "Guardar clave";
 "Screenshots" = "Capturas de pantalla";
 "Search" = "Buscar";
+"Search and watch YouTube, Netflix and JioHotstar in picture-in-picture." = "Busca y mira YouTube, Netflix y JioHotstar en imagen dentro de imagen.";
 "Search apps, files and the web" = "Busca apps, archivos y en la web";
 "Search widgets" = "Buscar widgets";
+"Search, then click a result to play it right in the dock. Use the picture-in-picture button to float it over any app." = "Busca y haz clic en un resultado para reproducirlo en el dock. Usa el botón de imagen dentro de imagen para que flote sobre cualquier app.";
 "Settings…" = "Ajustes…";
 "Show Desktop Icons" = "Mostrar iconos del escritorio";
 "Show Dockside" = "Mostrar Dockside";
@@ -260,6 +271,7 @@
 "Start" = "Iniciar";
 "Startup" = "Inicio";
 "Stay above the macOS Dock" = "Quedarse sobre el Dock de macOS";
+"Stop" = "Detener";
 "Stop recording" = "Detener grabación";
 "Storage" = "Almacenamiento";
 "Switch between running apps." = "Cambia entre apps abiertas.";
@@ -268,6 +280,7 @@
 "Things you copy will appear here. History stays in memory only." = "Lo que copies aparecerá aquí. El historial solo se guarda en memoria.";
 "Thinking" = "Pensando";
 "Thinking…" = "Pensando…";
+"This video can’t be played outside YouTube." = "Este vídeo no se puede reproducir fuera de YouTube.";
 "Time and date with a month calendar." = "Hora y fecha con calendario mensual.";
 "Title" = "Título";
 "Today" = "Hoy";
@@ -285,6 +298,8 @@
 "Use 24‑hour time" = "Usar formato de 24 horas";
 "Uses the Claude API with your own key, stored in your Keychain." = "Usa la API de Claude con tu propia clave, guardada en tu Llavero.";
 "Voice Memo" = "Nota de voz";
+"Watch" = "Ver";
+"Watching" = "Viendo";
 "Weather" = "Tiempo";
 "Web page" = "Página web";
 "Welcome to Dockside" = "Te damos la bienvenida a Dockside";
@@ -296,6 +311,7 @@
 "You can also drop apps from Finder straight onto the Favorite Apps widget." = "También puedes soltar apps desde el Finder directamente en el widget Apps favoritas.";
 "YouTube Music" = "YouTube Music";
 "YouTube Music works in Chrome, Brave, Edge and Safari. Turn on “Allow JavaScript from Apple Events” in the browser for full control (Chrome: View ▸ Developer)." = "YouTube Music funciona en Chrome, Brave, Edge y Safari. Activa «Permitir JavaScript desde Apple Events» en el navegador para tener control total (Chrome: Ver ▸ Desarrollador).";
+"YouTube couldn’t play this video." = "YouTube no pudo reproducir este vídeo.";
 "Your Dock is empty. Add widgets from the gallery →" = "Tu Dock está vacío. Añade widgets desde la galería →";
 "Your claude.ai artifacts" = "Tus artefactos de claude.ai";
 "Your favorite emoji, one click to copy." = "Tus emojis favoritos, a un clic de copiarlos.";

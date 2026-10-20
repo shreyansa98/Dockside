@@ -39,6 +39,7 @@
 "Automatic (based on your network)" = "Automatic (based on your network)";
 "Auto‑hide" = "Auto‑hide";
 "BREAK" = "BREAK";
+"Back" = "Back";
 "Battery" = "Battery";
 "Behavior" = "Behavior";
 "Bookmarks" = "Bookmarks";
@@ -67,6 +68,7 @@
 "Clipboard" = "Clipboard";
 "Clipboard History" = "Clipboard History";
 "Clock" = "Clock";
+"Close" = "Close";
 "Color Picker" = "Color Picker";
 "Connect calendar" = "Connect calendar";
 "Control YouTube Music, Spotify or Apple Music." = "Control YouTube Music, Spotify or Apple Music.";
@@ -78,6 +80,7 @@
 "Copy note" = "Copy note";
 "Copy source" = "Copy source";
 "Copy to clipboard instead of saving" = "Copy to clipboard instead of saving";
+"Couldn’t load YouTube results. Check your connection and try again." = "Couldn’t load YouTube results. Check your connection and try again.";
 "Countdown" = "Countdown";
 "Create Folder" = "Create Folder";
 "Creator & Utility" = "Creator & Utility";
@@ -119,6 +122,7 @@
 "File Shelf" = "File Shelf";
 "Filter" = "Filter";
 "Find apps, files and the web instantly." = "Find apps, files and the web instantly.";
+"Fit video" = "Fit video";
 "Focus & Health" = "Focus & Health";
 "Focus sessions with breaks." = "Focus sessions with breaks.";
 "Folder name" = "Folder name";
@@ -147,6 +151,7 @@
 "Keep above windows" = "Keep above windows";
 "Keep an eye on another city's time." = "Keep an eye on another city's time.";
 "Keep clipboard history" = "Keep clipboard history";
+"LIVE" = "LIVE";
 "Large" = "Large";
 "Launch Dockside at login" = "Launch Dockside at login";
 "Launch your favorite apps in one click." = "Launch your favorite apps in one click.";
@@ -206,9 +211,13 @@
 "Pause" = "Pause";
 "Permissions" = "Permissions";
 "Pick any color on screen, copy as hex." = "Pick any color on screen, copy as hex.";
+"Picture in picture" = "Picture in picture";
 "Play" = "Play";
 "Play Latest Memo" = "Play Latest Memo";
+"Play in picture-in-picture" = "Play in picture-in-picture";
+"Play in the dock" = "Play in the dock";
 "Play music.youtube.com in Chrome, Brave, Edge or Safari. The first time, macOS asks to let Dockside control your browser." = "Play music.youtube.com in Chrome, Brave, Edge or Safari. The first time, macOS asks to let Dockside control your browser.";
+"Playing in picture-in-picture" = "Playing in picture-in-picture";
 "Pomodoro" = "Pomodoro";
 "Position" = "Position";
 "Power Adapter" = "Power Adapter";
@@ -242,8 +251,10 @@
 "Save Key" = "Save Key";
 "Screenshots" = "Screenshots";
 "Search" = "Search";
+"Search and watch YouTube, Netflix and JioHotstar in picture-in-picture." = "Search and watch YouTube, Netflix and JioHotstar in picture-in-picture.";
 "Search apps, files and the web" = "Search apps, files and the web";
 "Search widgets" = "Search widgets";
+"Search, then click a result to play it right in the dock. Use the picture-in-picture button to float it over any app." = "Search, then click a result to play it right in the dock. Use the picture-in-picture button to float it over any app.";
 "Settings…" = "Settings…";
 "Show Desktop Icons" = "Show Desktop Icons";
 "Show Dockside" = "Show Dockside";
@@ -260,6 +271,7 @@
 "Start" = "Start";
 "Startup" = "Startup";
 "Stay above the macOS Dock" = "Stay above the macOS Dock";
+"Stop" = "Stop";
 "Stop recording" = "Stop recording";
 "Storage" = "Storage";
 "Switch between running apps." = "Switch between running apps.";
@@ -268,6 +280,7 @@
 "Things you copy will appear here. History stays in memory only." = "Things you copy will appear here. History stays in memory only.";
 "Thinking" = "Thinking";
 "Thinking…" = "Thinking…";
+"This video can’t be played outside YouTube." = "This video can’t be played outside YouTube.";
 "Time and date with a month calendar." = "Time and date with a month calendar.";
 "Title" = "Title";
 "Today" = "Today";
@@ -285,6 +298,8 @@
 "Use 24‑hour time" = "Use 24‑hour time";
 "Uses the Claude API with your own key, stored in your Keychain." = "Uses the Claude API with your own key, stored in your Keychain.";
 "Voice Memo" = "Voice Memo";
+"Watch" = "Watch";
+"Watching" = "Watching";
 "Weather" = "Weather";
 "Web page" = "Web page";
 "Welcome to Dockside" = "Welcome to Dockside";
@@ -296,6 +311,7 @@
 "You can also drop apps from Finder straight onto the Favorite Apps widget." = "You can also drop apps from Finder straight onto the Favorite Apps widget.";
 "YouTube Music" = "YouTube Music";
 "YouTube Music works in Chrome, Brave, Edge and Safari. Turn on “Allow JavaScript from Apple Events” in the browser for full control (Chrome: View ▸ Developer)." = "YouTube Music works in Chrome, Brave, Edge and Safari. Turn on “Allow JavaScript from Apple Events” in the browser for full control (Chrome: View ▸ Developer).";
+"YouTube couldn’t play this video." = "YouTube couldn’t play this video.";
 "Your Dock is empty. Add widgets from the gallery →" = "Your Dock is empty. Add widgets from the gallery →";
 "Your claude.ai artifacts" = "Your claude.ai artifacts";
 "Your favorite emoji, one click to copy." = "Your favorite emoji, one click to copy.";

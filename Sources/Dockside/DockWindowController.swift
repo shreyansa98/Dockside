@@ -295,6 +295,8 @@ final class DockWindowController: NSObject {
                 panel.animator().alphaValue = 1
             }
         } else {
+            // Lets a video playing in the dock pop out to picture-in-picture before the dock slides away.
+            NotificationCenter.default.post(name: .docksideDockDidHide, object: nil)
             NSAnimationContext.runAnimationGroup({ ctx in
                 ctx.duration = 0.18
                 ctx.timingFunction = CAMediaTimingFunction(name: .easeIn)

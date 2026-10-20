@@ -15,7 +15,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 ![Status: public beta](https://img.shields.io/badge/status-public%20beta-orange)
 
-[**⬇️ Download the beta**](https://github.com/shreyansa98/Dockside/releases/download/v0.1.0-beta/Dockside-0.1.0-beta.dmg) · [Features](#-35-widgets) · [Install](#-install) · [Permissions](#-permissions--privacy) · [Contribute](#-contributing)
+[**⬇️ Download the beta**](https://github.com/shreyansa98/Dockside/releases/download/v0.1.0-beta/Dockside-0.1.0-beta.dmg) · [Features](#-36-widgets) · [Install](#-install) · [Permissions](#-permissions--privacy) · [Contribute](#-contributing)
 
 <br>
 
@@ -39,17 +39,18 @@ It hides until you need it, slides in when your pointer touches the bottom of th
 | ⚡️ **Native and tiny** | 100% Swift and SwiftUI. An 11 MB universal app for Apple Silicon and Intel — no Electron, no web views for the dock itself. |
 | ✳️ **Claude built in** | Ask Claude anything with <kbd>⌃</kbd><kbd>⌥</kbd><kbd>C</kbd>. Web pages, charts and SVGs it creates open as live **artifacts** right inside Dockside, and your claude.ai artifacts are a click away. |
 | 🎵 **Your music, your service** | YouTube Music (in Chrome, Brave, Edge or Safari), Spotify and Apple Music, with artwork, progress and controls. |
+| 📺 **Picture-in-picture, in the dock** | Search YouTube and watch it *inside the dock bar*, or float it over any app. Netflix and JioHotstar too. |
 | 🫥 **Invisible until needed** | Auto-hides, reveals on a bottom-edge hover, and never covers the macOS Dock. |
-| 🎨 **Make it yours** | 35 widgets in English, Spanish and Hindi, profiles for Work/Personal/whatever, 4 themes, 7 accents, 3 sizes, top or bottom, free placement. |
+| 🎨 **Make it yours** | 36 widgets in English, Spanish and Hindi, profiles for Work/Personal/whatever, 4 themes, 7 accents, 3 sizes, top or bottom, free placement. |
 | 🔒 **Private by design** | No account, no analytics, no tracking. Your data stays in a folder on your Mac. [Every network call is listed below.](#-permissions--privacy) |
 | 🛠 **Hackable** | A widget is one SwiftUI view. [Add your own](CONTRIBUTING.md#add-a-widget-in-5-steps) in an afternoon and send a PR. |
 
-## 🧩 35 widgets
+## 🧩 36 widgets
 
 | Category | Widgets |
 |---|---|
 | **AI** | Claude — chat, artifacts and claude.ai |
-| **Media & weather** | Now Playing (YouTube Music · Spotify · Apple Music) · Weather with 3-day forecast |
+| **Media & weather** | **Watch** (YouTube · Netflix · JioHotstar, picture-in-picture) · Now Playing (YouTube Music · Spotify · Apple Music) · Weather with 3-day forecast |
 | **Apps & files** | Favorite Apps · App Folders · App Switcher · Search (apps, files, web, math, *Ask Claude*) · Downloads · File Shelf · Bookmarks · Trash |
 | **Productivity** | Clock with calendar · World Clock · Countdown · Calendar & meetings (one-click *Join*) · Reminders · Todos · Pomodoro · Drink Water · Day/Week/Month/Year Progress · Quick Note |
 | **Mac controls** | CPU · Memory · Battery · Storage · Network speed · Quick Toggles (Dark Mode, Keep Awake, Desktop Icons, Lock) · Volume · Clipboard History · Screenshots · Voice Memo |
@@ -75,6 +76,17 @@ Click the Claude widget or press <kbd>⌃</kbd><kbd>⌥</kbd><kbd>C</kbd> from a
 Chat uses your own [Anthropic API key](https://console.anthropic.com/settings/keys), stored in the macOS Keychain. API usage is billed by Anthropic separately from a Claude Pro/Max subscription; the claude.ai tab uses your normal subscription.
 
 <br clear="right">
+
+## 📺 Watch — picture-in-picture, right in the dock
+
+Add the **Watch** widget and click it:
+
+- **YouTube** — search from the dock and click a result. It plays **live inside the dock bar** as a mini player, with play/pause and a progress line.
+- **Pop out** with the picture-in-picture button: an always-on-top window that floats over every app, Space and full-screen video call. Hover it for play/pause, a scrubber, *Open in browser* and **Play in the dock** to send it back.
+- **Netflix and JioHotstar** — open them in the floating window, sign in once (Dockside remembers you), start a show and use **Fit video** to fill the window.
+- If the dock auto-hides while a video is playing in it, the video pops out so you never lose the picture.
+
+The same player moves between the dock and the window, so playback never restarts. Netflix and JioHotstar play through their own websites, exactly as in Safari — Dockside never downloads video or works around a service's restrictions.
 
 ## 📦 Install
 
@@ -167,6 +179,8 @@ Needs the Xcode Command Line Tools (`xcode-select --install`). No Xcode project,
 | GitHub API | GitHub widget | the username you entered |
 | Google favicon service | Bookmarks widget | the domains of your bookmarks |
 | Album-art hosts (Spotify, YouTube) | Now Playing | a request for the current cover image |
+| YouTube | Watch widget | your search terms, and the video you play |
+| Netflix, JioHotstar | You open them in the Watch widget | whatever you do there, as in any browser |
 
 No analytics. No crash reporting. No account. Clipboard history is kept in memory only and skips copies that password managers mark as private.
 
@@ -203,4 +217,4 @@ If Dockside makes your Mac a little nicer, **star the repo** — it’s the best
 
 [MIT](LICENSE) — free for personal and commercial use.
 
-<sub>Dockside is an independent open-source project and is not affiliated with Apple, Anthropic, Google, YouTube or Spotify. Claude is a trademark of Anthropic; all other names are trademarks of their respective owners.</sub>
+<sub>Dockside is an independent open-source project and is not affiliated with Apple, Anthropic, Google, YouTube, Netflix, JioStar or Spotify. Claude is a trademark of Anthropic; all other names are trademarks of their respective owners.</sub>

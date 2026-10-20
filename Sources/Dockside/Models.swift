@@ -32,7 +32,7 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
     case apps, folder, runningApps, search, downloads, fileShelf, bookmarks, trash
     case calendar, reminders, todos, pomodoro, water, progress, notes, countdown
     case cpu, memory, battery, disk, network, toggles, volume
-    case clipboard, screenshot, voiceMemo, emoji, colorPicker, calculator
+    case clipboard, screenshot, voiceMemo, emoji, colorPicker, calculator, watch
     case github
     case claude
 
@@ -73,6 +73,7 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
         case .emoji: String(localized: "Emoji")
         case .colorPicker: String(localized: "Color Picker")
         case .calculator: String(localized: "Converter")
+        case .watch: String(localized: "Watch")
         case .github: String(localized: "GitHub")
         case .claude: String(localized: "Claude")
         }
@@ -113,6 +114,7 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
         case .emoji: "face.smiling.inverse"
         case .colorPicker: "eyedropper.halffull"
         case .calculator: "plus.forwardslash.minus"
+        case .watch: "play.rectangle.fill"
         case .github: "chevron.left.forwardslash.chevron.right"
         case .claude: "sparkle"
         }
@@ -148,6 +150,7 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
         case .emoji: .yellow
         case .colorPicker: .purple
         case .calculator: .orange
+        case .watch: .red
         case .github: .gray
         case .claude: Color(red: 0.85, green: 0.47, blue: 0.34)
         }
@@ -158,7 +161,7 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
         case .apps, .folder, .runningApps, .search, .downloads, .fileShelf, .bookmarks, .trash: .apps
         case .clock, .worldClock, .calendar, .reminders, .todos, .pomodoro, .water, .progress, .notes, .countdown: .productivity
         case .cpu, .memory, .battery, .disk, .network, .toggles, .volume, .clipboard, .screenshot, .voiceMemo: .system
-        case .weather, .nowPlaying: .media
+        case .weather, .nowPlaying, .watch: .media
         case .emoji, .colorPicker, .calculator: .utility
         case .github: .developer
         case .claude: .ai
@@ -200,6 +203,7 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
         case .emoji: String(localized: "Your favorite emoji, one click to copy.")
         case .colorPicker: String(localized: "Pick any color on screen, copy as hex.")
         case .calculator: String(localized: "Calculator plus unit conversion.")
+        case .watch: String(localized: "Search and watch YouTube, Netflix and JioHotstar in picture-in-picture.")
         case .github: String(localized: "Followers and repos for a GitHub user.")
         case .claude: String(localized: "Chat with Claude and view your artifacts.")
         }
@@ -342,6 +346,7 @@ struct DockSettings: Codable, Equatable {
     var breakMinutes = 5
     var hotkeyEnabled = true
     var keepClipboardHistory = true
+    var videoPopOutOnHide = true
 }
 
 // MARK: - Persistent data

@@ -39,6 +39,7 @@
 "Automatic (based on your network)" = "स्वचालित (आपके नेटवर्क के आधार पर)";
 "Auto‑hide" = "अपने-आप छिपाएँ";
 "BREAK" = "विराम";
+"Back" = "वापस";
 "Battery" = "बैटरी";
 "Behavior" = "व्यवहार";
 "Bookmarks" = "बुकमार्क";
@@ -67,6 +68,7 @@
 "Clipboard" = "क्लिपबोर्ड";
 "Clipboard History" = "क्लिपबोर्ड इतिहास";
 "Clock" = "घड़ी";
+"Close" = "बंद करें";
 "Color Picker" = "कलर पिकर";
 "Connect calendar" = "कैलेंडर जोड़ें";
 "Control YouTube Music, Spotify or Apple Music." = "YouTube Music, Spotify या Apple Music नियंत्रित करें।";
@@ -78,6 +80,7 @@
 "Copy note" = "नोट कॉपी करें";
 "Copy source" = "सोर्स कॉपी करें";
 "Copy to clipboard instead of saving" = "सहेजने के बजाय क्लिपबोर्ड पर कॉपी करें";
+"Couldn’t load YouTube results. Check your connection and try again." = "YouTube के परिणाम लोड नहीं हो सके। अपना कनेक्शन जाँचें और फिर कोशिश करें।";
 "Countdown" = "उलटी गिनती";
 "Create Folder" = "फ़ोल्डर बनाएँ";
 "Creator & Utility" = "क्रिएटर और उपयोगिता";
@@ -119,6 +122,7 @@
 "File Shelf" = "फ़ाइल शेल्फ़";
 "Filter" = "फ़िल्टर";
 "Find apps, files and the web instantly." = "ऐप्स, फ़ाइलें और वेब तुरंत खोजें।";
+"Fit video" = "वीडियो फ़िट करें";
 "Focus & Health" = "फ़ोकस और सेहत";
 "Focus sessions with breaks." = "विराम के साथ फ़ोकस सत्र।";
 "Folder name" = "फ़ोल्डर का नाम";
@@ -147,6 +151,7 @@
 "Keep above windows" = "विंडो के ऊपर रखें";
 "Keep an eye on another city's time." = "किसी दूसरे शहर का समय देखें।";
 "Keep clipboard history" = "क्लिपबोर्ड इतिहास रखें";
+"LIVE" = "लाइव";
 "Large" = "बड़ा";
 "Launch Dockside at login" = "लॉग इन पर Dockside खोलें";
 "Launch your favorite apps in one click." = "अपने पसंदीदा ऐप्स एक क्लिक में खोलें।";
@@ -206,9 +211,13 @@
 "Pause" = "रोकें";
 "Permissions" = "अनुमतियाँ";
 "Pick any color on screen, copy as hex." = "स्क्रीन से कोई भी रंग चुनें, hex में कॉपी करें।";
+"Picture in picture" = "पिक्चर-इन-पिक्चर";
 "Play" = "चलाएँ";
 "Play Latest Memo" = "नवीनतम मेमो चलाएँ";
+"Play in picture-in-picture" = "पिक्चर-इन-पिक्चर में चलाएँ";
+"Play in the dock" = "डॉक में चलाएँ";
 "Play music.youtube.com in Chrome, Brave, Edge or Safari. The first time, macOS asks to let Dockside control your browser." = "Chrome, Brave, Edge या Safari में music.youtube.com चलाएँ। पहली बार macOS पूछेगा कि क्या Dockside आपके ब्राउज़र को नियंत्रित कर सकता है।";
+"Playing in picture-in-picture" = "पिक्चर-इन-पिक्चर में चल रहा है";
 "Pomodoro" = "पोमोडोरो";
 "Position" = "स्थान";
 "Power Adapter" = "पावर एडेप्टर";
@@ -242,8 +251,10 @@
 "Save Key" = "कुंजी सहेजें";
 "Screenshots" = "स्क्रीनशॉट";
 "Search" = "खोजें";
+"Search and watch YouTube, Netflix and JioHotstar in picture-in-picture." = "YouTube, Netflix और JioHotstar खोजें और पिक्चर-इन-पिक्चर में देखें।";
 "Search apps, files and the web" = "ऐप्स, फ़ाइलें और वेब खोजें";
 "Search widgets" = "विजेट खोजें";
+"Search, then click a result to play it right in the dock. Use the picture-in-picture button to float it over any app." = "खोजें, फिर किसी परिणाम पर क्लिक करके उसे डॉक में ही चलाएँ। उसे किसी भी ऐप के ऊपर तैराने के लिए पिक्चर-इन-पिक्चर बटन का उपयोग करें।";
 "Settings…" = "सेटिंग्स…";
 "Show Desktop Icons" = "डेस्कटॉप आइकन दिखाएँ";
 "Show Dockside" = "Dockside दिखाएँ";
@@ -260,6 +271,7 @@
 "Start" = "शुरू करें";
 "Startup" = "स्टार्टअप";
 "Stay above the macOS Dock" = "macOS डॉक के ऊपर रहें";
+"Stop" = "रोकें";
 "Stop recording" = "रिकॉर्डिंग रोकें";
 "Storage" = "स्टोरेज";
 "Switch between running apps." = "चल रहे ऐप्स के बीच स्विच करें।";
@@ -268,6 +280,7 @@
 "Things you copy will appear here. History stays in memory only." = "आप जो कॉपी करेंगे वह यहाँ दिखेगा। इतिहास केवल मेमोरी में रहता है।";
 "Thinking" = "सोच रहा है";
 "Thinking…" = "सोच रहा है…";
+"This video can’t be played outside YouTube." = "यह वीडियो YouTube के बाहर नहीं चल सकता।";
 "Time and date with a month calendar." = "महीने के कैलेंडर के साथ समय और तारीख।";
 "Title" = "शीर्षक";
 "Today" = "आज";
@@ -285,6 +298,8 @@
 "Use 24‑hour time" = "24-घंटे का समय उपयोग करें";
 "Uses the Claude API with your own key, stored in your Keychain." = "आपकी अपनी कुंजी से Claude API का उपयोग करता है, जो आपके Keychain में सुरक्षित है।";
 "Voice Memo" = "वॉइस मेमो";
+"Watch" = "देखें";
+"Watching" = "देख रहे हैं";
 "Weather" = "मौसम";
 "Web page" = "वेब पेज";
 "Welcome to Dockside" = "Dockside में आपका स्वागत है";
@@ -296,6 +311,7 @@
 "You can also drop apps from Finder straight onto the Favorite Apps widget." = "आप Finder से ऐप्स सीधे पसंदीदा ऐप्स विजेट पर भी छोड़ सकते हैं।";
 "YouTube Music" = "YouTube Music";
 "YouTube Music works in Chrome, Brave, Edge and Safari. Turn on “Allow JavaScript from Apple Events” in the browser for full control (Chrome: View ▸ Developer)." = "YouTube Music Chrome, Brave, Edge और Safari में चलता है। पूरा नियंत्रण पाने के लिए ब्राउज़र में “Allow JavaScript from Apple Events” चालू करें (Chrome: View ▸ Developer)।";
+"YouTube couldn’t play this video." = "YouTube यह वीडियो नहीं चला सका।";
 "Your Dock is empty. Add widgets from the gallery →" = "आपका डॉक खाली है। गैलरी से विजेट जोड़ें →";
 "Your claude.ai artifacts" = "आपके claude.ai आर्टिफ़ैक्ट";
 "Your favorite emoji, one click to copy." = "आपके पसंदीदा इमोजी, एक क्लिक में कॉपी।";
