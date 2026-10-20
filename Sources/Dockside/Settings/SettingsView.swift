@@ -9,13 +9,13 @@ enum SettingsTab: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .general: "General"
-        case .widgets: "Widgets"
-        case .appearance: "Appearance"
-        case .apps: "Apps & Folders"
-        case .profiles: "Profiles"
-        case .permissions: "Permissions"
-        case .about: "About"
+        case .general: String(localized: "General")
+        case .widgets: String(localized: "Widgets")
+        case .appearance: String(localized: "Appearance")
+        case .apps: String(localized: "Apps & Folders")
+        case .profiles: String(localized: "Profiles")
+        case .permissions: String(localized: "Permissions")
+        case .about: String(localized: "About")
         }
     }
 
@@ -99,7 +99,7 @@ private struct GeneralSettings: View {
                     AppGlyph(size: 64)
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Welcome to Dockside").font(.system(size: 20, weight: .bold))
-                        Text("Your smart second Dock. Right‑click any widget to move or remove it, or use the menu bar icon to switch profiles.")
+                        Text("Push your pointer to the bottom edge to reveal the dock. Right‑click any widget to move or remove it, or drag it to a new spot.")
                             .font(.system(size: 12)).foregroundStyle(.secondary)
                     }
                 }
@@ -222,8 +222,8 @@ private struct WidgetsSettings: View {
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 6) {
-                        chip(nil, "All", "square.grid.3x3.fill")
-                        ForEach(WidgetCategory.allCases) { c in chip(c, c.rawValue, c.symbol) }
+                        chip(nil, String(localized: "All"), "square.grid.3x3.fill")
+                        ForEach(WidgetCategory.allCases) { c in chip(c, c.title, c.symbol) }
                     }
                 }
 
@@ -282,6 +282,7 @@ private struct CurrentWidgetRow: View {
         switch item.kind {
         case .worldClock: item.options["city"]
         case .progress: (item.options["period"] ?? "day").capitalized
+        case .countdown: item.options["title"]
         case .folder: store.data.folders.first { $0.id.uuidString == item.options["folder"] }?.name ?? store.data.folders.first?.name
         default: nil
         }
@@ -311,7 +312,7 @@ private struct WidgetCard: View {
                 Text(kind.title).font(.system(size: 13, weight: .semibold))
                 Text(kind.summary).font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(2, reservesSpace: true)
             }
-            Text(kind.category.rawValue).font(.system(size: 9, weight: .semibold)).foregroundStyle(.tertiary).textCase(.uppercase)
+            Text(kind.category.title).font(.system(size: 9, weight: .semibold)).foregroundStyle(.tertiary).textCase(.uppercase)
         }
         .padding(14)
         .background(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Color.primary.opacity(hover ? 0.07 : 0.04)))
@@ -352,6 +353,11 @@ private struct AppearanceSettings: View {
                     ForEach(DockSize.allCases) { Text($0.title).tag($0) }
                 }
                 .pickerStyle(.segmented)
+                Picker("Display", selection: $store.settings.display) {
+                    ForEach(DockDisplay.allCases) { Text($0.title).tag($0) }
+                }
+                .pickerStyle(.segmented)
+                .disabled(store.settings.floating)
                 Picker("Position", selection: $store.settings.position) {
                     ForEach(DockPosition.allCases) { Text($0.title).tag($0) }
                 }
@@ -675,7 +681,7 @@ private struct AboutSettings: View {
             AppGlyph(size: 112)
                 .shadow(color: .black.opacity(0.25), radius: 16, y: 8)
             Text("Dockside").font(.system(size: 30, weight: .bold))
-            Text("A useful Dock for live widgets.").font(.system(size: 15)).foregroundStyle(.secondary)
+            Text("Live widgets, Claude built in, free and open source.").font(.system(size: 15)).foregroundStyle(.secondary)
             Text("Version \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0.1.0") · Public Beta")
                 .font(.system(size: 12)).foregroundStyle(.tertiary)
             HStack(spacing: 10) {

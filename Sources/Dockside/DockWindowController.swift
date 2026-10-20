@@ -29,14 +29,15 @@ final class DockHostingView: NSHostingView<DockRootView> {
     }
 }
 
-/// Horizontal-only scroll view: a mouse wheel's vertical scrolling moves the dock sideways too.
+/// Horizontal-only scroll view. AppKit's own horizontal handling doesn't engage in this borderless panel, so
+/// every wheel and trackpad event (including momentum) is applied here, clamped to the content's ends.
 final class DockScrollView: NSScrollView {
     override func scrollWheel(with e: NSEvent) {
-        guard abs(e.scrollingDeltaY) > abs(e.scrollingDeltaX), let doc = documentView else {
-            super.scrollWheel(with: e)
-            return
-        }
-        let step = e.hasPreciseScrollingDeltas ? e.scrollingDeltaY : e.scrollingDeltaY * 12
+        guard let doc = documentView else { return }
+        // Sideways swipes scroll directly; a vertical swipe or mouse wheel scrolls sideways too.
+        let raw = abs(e.scrollingDeltaX) >= abs(e.scrollingDeltaY) ? e.scrollingDeltaX : e.scrollingDeltaY
+        let step = e.hasPreciseScrollingDeltas ? raw : raw * 20
+        guard step != 0 else { return }
         let maxX = max(0, doc.frame.width - contentView.bounds.width)
         var origin = contentView.bounds.origin
         origin.x = min(max(origin.x - step, 0), maxX)
@@ -141,7 +142,34 @@ final class DockWindowController: NSObject {
         panel.contentView = container
     }
 
-    private var screen: NSScreen? { NSScreen.screens.first }
+    /// The display the dock is on: the main one, or the last one the pointer visited when following it.
+    private var currentScreen: NSScreen?
+    private var screenDwell: TimeInterval = 0
+
+    private var screen: NSScreen? {
+        if let c = currentScreen, Store.shared.settings.display == .pointer, NSScreen.screens.contains(c) { return c }
+        return NSScreen.screens.first
+    }
+
+    private func screenUnderPointer() -> NSScreen? {
+        let m = NSEvent.mouseLocation
+        return NSScreen.screens.first { NSMouseInRect(m, $0.frame, false) }
+    }
+
+    private func move(to s: NSScreen) {
+        currentScreen = s
+        NSAnimationContext.runAnimationGroup({ ctx in
+            ctx.duration = 0.12
+            panel.animator().alphaValue = 0
+        }, completionHandler: { [weak self] in
+            guard let self else { return }
+            self.reposition()
+            NSAnimationContext.runAnimationGroup { ctx in
+                ctx.duration = 0.18
+                self.panel.animator().alphaValue = 1
+            }
+        })
+    }
 
     private var autoHideActive: Bool {
         let s = Store.shared.settings
@@ -192,6 +220,25 @@ final class DockWindowController: NSObject {
     // MARK: Hover to reveal
 
     private func trackPointer() {
+        // SwiftUI has no drag-cancelled callback; once the button is up, any widget drag is over.
+        if DockDragState.shared.dragging != nil && NSEvent.pressedMouseButtons == 0 {
+            DockDragState.shared.dragging = nil
+        }
+
+        let settings = Store.shared.settings
+        if settings.display == .pointer, !settings.floating, settings.visible, let ps = screenUnderPointer(), ps != screen {
+            if !revealed {
+                // Hidden: just remember where the pointer is so the dock reveals on that display.
+                currentScreen = ps
+                screenDwell = 0
+            } else if !autoHideActive {
+                screenDwell += 0.05
+                if screenDwell >= 0.35 { screenDwell = 0; move(to: ps) }
+            }
+        } else {
+            screenDwell = 0
+        }
+
         guard autoHideActive, Store.shared.settings.visible, let screen, contentSize != .zero else { return }
         let m = NSEvent.mouseLocation
         let top = Store.shared.settings.position == .top
@@ -288,7 +335,8 @@ final class DockWindowController: NSObject {
         CFPreferencesAppSynchronize(app)
         let autohide = CFPreferencesCopyAppValue("autohide" as CFString, app) as? Bool ?? false
         let orientation = CFPreferencesCopyAppValue("orientation" as CFString, app) as? String ?? "bottom"
-        guard autohide, orientation == "bottom", screen == NSScreen.screens.first else { return 0 }
+        // The macOS Dock slides in on whichever display the pointer reaches, so leave room on every display.
+        guard autohide, orientation == "bottom" else { return 0 }
         let tile = CFPreferencesCopyAppValue("tilesize" as CFString, app) as? Double ?? 48
         return CGFloat(tile) + 22
     }

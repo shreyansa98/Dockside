@@ -2,6 +2,17 @@
 
 All notable changes to Dockside are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+- **Countdown** widget — days until a date you pick, with quick presets (#1).
+- **Drag to reorder** widgets right on the dock (#3).
+- **Multiple displays:** Settings ▸ Appearance ▸ Display ▸ *Follow the pointer* (#4).
+- **Localization:** Spanish and Hindi, plus `Scripts/extract-strings.py` for translators (#5).
+
+### Fixed
+- Scrolling a dock wider than the screen: trackpad swipes now scroll sideways and reach both ends.
+
 ## [0.1.0-beta] — 2026-10-19
 
 The first public beta. 🎉

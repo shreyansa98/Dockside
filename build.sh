@@ -48,6 +48,9 @@ if [ ! -f build/AppIcon.icns ]; then
   iconutil -c icns "$ICONSET" -o build/AppIcon.icns
 fi
 cp build/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
+# Translations: SwiftUI looks up Localizable.strings in the app bundle's .lproj folders.
+cp -R Resources/Localization/*.lproj "$APP/Contents/Resources/"
+LOCALIZATIONS=$(for d in Resources/Localization/*.lproj; do printf '<string>%s</string>' "$(basename "$d" .lproj)"; done)
 
 cat > "$APP/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
@@ -55,6 +58,8 @@ cat > "$APP/Contents/Info.plist" <<PLIST
 <plist version="1.0">
 <dict>
   <key>CFBundleName</key><string>Dockside</string>
+  <key>CFBundleDevelopmentRegion</key><string>en</string>
+  <key>CFBundleLocalizations</key><array>${LOCALIZATIONS}</array>
   <key>CFBundleDisplayName</key><string>Dockside</string>
   <key>CFBundleIdentifier</key><string>app.dockside.mac</string>
   <key>CFBundleExecutable</key><string>Dockside</string>

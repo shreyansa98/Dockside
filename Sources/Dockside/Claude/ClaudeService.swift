@@ -54,10 +54,10 @@ enum ClaudeModel: String, CaseIterable, Identifiable, Codable {
 
     var subtitle: String {
         switch self {
-        case .opus: "Default · capable and balanced"
-        case .sonnet: "Fast everyday model"
-        case .haiku: "Fastest, lowest cost"
-        case .fable: "Most capable · slower, pricier"
+        case .opus: String(localized: "Default · capable and balanced")
+        case .sonnet: String(localized: "Fast everyday model")
+        case .haiku: String(localized: "Fastest, lowest cost")
+        case .fable: String(localized: "Most capable · slower, pricier")
         }
     }
 

@@ -128,7 +128,7 @@ private struct FolderPopover: View {
     var body: some View {
         let folder = store.data.folders[index]
         VStack(alignment: .leading, spacing: 12) {
-            PopoverHeader(title: folder.name, symbol: "folder.fill", tint: .blue) {
+            PopoverHeader(title: LocalizedStringKey(folder.name), symbol: "folder.fill", tint: .blue) {
                 Button { Launcher.chooseApps { add($0) } } label: { Image(systemName: "plus") }
                     .buttonStyle(.borderless).help("Add apps")
             }

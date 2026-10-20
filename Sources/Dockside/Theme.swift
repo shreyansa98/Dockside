@@ -125,7 +125,7 @@ extension EnvironmentValues {
 }
 
 struct PopoverHeader<Trailing: View>: View {
-    var title: String
+    var title: LocalizedStringKey
     var symbol: String
     var tint: Color
     @ViewBuilder var trailing: () -> Trailing
@@ -146,7 +146,7 @@ struct PopoverHeader<Trailing: View>: View {
 }
 
 extension PopoverHeader where Trailing == EmptyView {
-    init(title: String, symbol: String, tint: Color) {
+    init(title: LocalizedStringKey, symbol: String, tint: Color) {
         self.init(title: title, symbol: symbol, tint: tint) { EmptyView() }
     }
 }

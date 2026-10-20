@@ -15,7 +15,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 ![Status: public beta](https://img.shields.io/badge/status-public%20beta-orange)
 
-[**⬇️ Download the beta**](https://github.com/shreyansa98/Dockside/releases/download/v0.1.0-beta/Dockside-0.1.0-beta.dmg) · [Features](#-34-widgets) · [Install](#-install) · [Permissions](#-permissions--privacy) · [Contribute](#-contributing)
+[**⬇️ Download the beta**](https://github.com/shreyansa98/Dockside/releases/download/v0.1.0-beta/Dockside-0.1.0-beta.dmg) · [Features](#-35-widgets) · [Install](#-install) · [Permissions](#-permissions--privacy) · [Contribute](#-contributing)
 
 <br>
 
@@ -40,18 +40,18 @@ It hides until you need it, slides in when your pointer touches the bottom of th
 | ✳️ **Claude built in** | Ask Claude anything with <kbd>⌃</kbd><kbd>⌥</kbd><kbd>C</kbd>. Web pages, charts and SVGs it creates open as live **artifacts** right inside Dockside, and your claude.ai artifacts are a click away. |
 | 🎵 **Your music, your service** | YouTube Music (in Chrome, Brave, Edge or Safari), Spotify and Apple Music, with artwork, progress and controls. |
 | 🫥 **Invisible until needed** | Auto-hides, reveals on a bottom-edge hover, and never covers the macOS Dock. |
-| 🎨 **Make it yours** | 34 widgets, profiles for Work/Personal/whatever, 4 themes, 7 accents, 3 sizes, top or bottom, free placement. |
+| 🎨 **Make it yours** | 35 widgets in English, Spanish and Hindi, profiles for Work/Personal/whatever, 4 themes, 7 accents, 3 sizes, top or bottom, free placement. |
 | 🔒 **Private by design** | No account, no analytics, no tracking. Your data stays in a folder on your Mac. [Every network call is listed below.](#-permissions--privacy) |
 | 🛠 **Hackable** | A widget is one SwiftUI view. [Add your own](CONTRIBUTING.md#add-a-widget-in-5-steps) in an afternoon and send a PR. |
 
-## 🧩 34 widgets
+## 🧩 35 widgets
 
 | Category | Widgets |
 |---|---|
 | **AI** | Claude — chat, artifacts and claude.ai |
 | **Media & weather** | Now Playing (YouTube Music · Spotify · Apple Music) · Weather with 3-day forecast |
 | **Apps & files** | Favorite Apps · App Folders · App Switcher · Search (apps, files, web, math, *Ask Claude*) · Downloads · File Shelf · Bookmarks · Trash |
-| **Productivity** | Clock with calendar · World Clock · Calendar & meetings (one-click *Join*) · Reminders · Todos · Pomodoro · Drink Water · Day/Week/Month/Year Progress · Quick Note |
+| **Productivity** | Clock with calendar · World Clock · Countdown · Calendar & meetings (one-click *Join*) · Reminders · Todos · Pomodoro · Drink Water · Day/Week/Month/Year Progress · Quick Note |
 | **Mac controls** | CPU · Memory · Battery · Storage · Network speed · Quick Toggles (Dark Mode, Keep Awake, Desktop Icons, Lock) · Volume · Clipboard History · Screenshots · Voice Memo |
 | **Creator & utility** | Emoji · Color Picker · Calculator & Unit Converter |
 | **Developer** | GitHub profile & repos |
@@ -108,6 +108,7 @@ Chat uses your own [Anthropic API key](https://console.anthropic.com/settings/ke
 | Push your pointer against the **bottom edge** of the screen | Reveal Dockside |
 | <kbd>⌃</kbd><kbd>⌥</kbd><kbd>D</kbd> | Keep Dockside open (press again to release) |
 | <kbd>⌃</kbd><kbd>⌥</kbd><kbd>C</kbd> | Open Claude |
+| **Drag** a widget along the dock | Reorder it |
 | **Right-click** any widget | Move it, remove it, switch profile |
 | **Click** a widget | Open its expanded view |
 | **Scroll** sideways on the dock | See widgets that don’t fit on screen |
@@ -174,11 +175,11 @@ No analytics. No crash reporting. No account. Clipboard history is kept in memor
 - [ ] Signed & notarized builds (no more *Open Anyway*)
 - [ ] Homebrew cask: `brew install --cask dockside`
 - [ ] Auto-update via Sparkle
-- [ ] Multi-display support (dock per screen)
-- [ ] Drag-and-drop widget reordering right on the dock
+- [x] Multi-display support (follow the pointer)
+- [x] Drag-and-drop widget reordering right on the dock
+- [x] Localization (English, Spanish, Hindi)
 - [ ] Widget plugin API
 - [ ] More integrations: Linear, Notion, Stripe, Home Assistant
-- [ ] Localization
 
 Have an idea? [Suggest a widget](https://github.com/shreyansa98/Dockside/issues/new?template=widget_idea.yml) or upvote one with a 👍.
 

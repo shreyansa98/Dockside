@@ -54,7 +54,7 @@ struct StatWidget: View {
             .help(kind.title)
         } popover: {
             VStack(alignment: .leading, spacing: 10) {
-                PopoverHeader(title: kind.title, symbol: kind.symbol, tint: color)
+                PopoverHeader(title: LocalizedStringKey(kind.title), symbol: kind.symbol, tint: color)
                 ForEach(details, id: \.0) { row in
                     HStack {
                         Text(row.0).foregroundStyle(.secondary)

@@ -112,6 +112,8 @@ final class Store: ObservableObject {
             item.options = ["tz": "Europe/London", "city": "London"]
         case .progress:
             item.options = ["period": "day"]
+        case .countdown:
+            item.options = ["title": "New Year", "date": CountdownWidget.isoString(CountdownWidget.nextNewYear)]
         default: break
         }
         withAnimation(.spring(duration: 0.35)) { widgets.append(item) }

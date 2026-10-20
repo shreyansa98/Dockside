@@ -123,17 +123,58 @@ struct EmptyDockTile: View {
     }
 }
 
+/// Tracks the widget being dragged along the dock so drop targets can reorder live.
+final class DockDragState: ObservableObject {
+    static let shared = DockDragState()
+    static let prefix = "dockside-widget:"
+    @Published var dragging: UUID?
+}
+
+/// Moves the dragged widget into the hovered widget's slot as the pointer passes over it.
+struct ReorderDropDelegate: DropDelegate {
+    let target: UUID
+    let drag: DockDragState
+
+    func validateDrop(info: DropInfo) -> Bool {
+        drag.dragging != nil && info.hasItemsConforming(to: [.plainText])
+    }
+
+    func dropEntered(info: DropInfo) {
+        guard let dragged = drag.dragging, dragged != target else { return }
+        let store = Store.shared
+        var list = store.widgets
+        guard let from = list.firstIndex(where: { $0.id == dragged }),
+              let to = list.firstIndex(where: { $0.id == target }) else { return }
+        list.move(fromOffsets: IndexSet(integer: from), toOffset: to > from ? to + 1 : to)
+        withAnimation(.spring(duration: 0.3)) { store.widgets = list }
+    }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? { DropProposal(operation: .move) }
+
+    func performDrop(info: DropInfo) -> Bool {
+        drag.dragging = nil
+        return true
+    }
+}
+
 struct WidgetHost: View {
     let item: WidgetItem
     @ObservedObject private var store = Store.shared
+    @ObservedObject private var drag = DockDragState.shared
     @State private var hover = false
 
     var body: some View {
         content
             .scaleEffect(hover && store.settings.hoverEffects ? 1.03 : 1)
             .brightness(hover && store.settings.hoverEffects ? 0.03 : 0)
+            .opacity(drag.dragging == item.id ? 0.35 : 1)
             .animation(.spring(duration: 0.3, bounce: 0.35), value: hover)
             .onHover { hover = $0 }
+            .onDrag {
+                drag.dragging = item.id
+                return NSItemProvider(object: (DockDragState.prefix + item.id.uuidString) as NSString)
+            }
+            .onDrop(of: [.plainText], delegate: ReorderDropDelegate(target: item.id, drag: drag))
             .contextMenu { menu }
     }
 
@@ -157,6 +198,7 @@ struct WidgetHost: View {
         case .pomodoro: PomodoroWidget()
         case .water: WaterWidget()
         case .progress: ProgressWidget(item: item)
+        case .countdown: CountdownWidget(item: item)
         case .notes: NotesWidget()
         case .cpu, .memory, .battery, .disk: StatWidget(kind: item.kind)
         case .network: NetworkWidget()

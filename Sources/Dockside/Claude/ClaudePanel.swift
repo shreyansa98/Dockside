@@ -7,9 +7,9 @@ enum ClaudeTab: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .chat: "Chat"
-        case .artifacts: "Artifacts"
-        case .web: "claude.ai"
+        case .chat: String(localized: "Chat")
+        case .artifacts: String(localized: "Artifacts")
+        case .web: String(localized: "claude.ai")
         }
     }
 }

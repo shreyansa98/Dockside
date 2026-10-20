@@ -12,6 +12,7 @@ enum WidgetCategory: String, CaseIterable, Codable, Identifiable {
     case ai = "AI"
 
     var id: String { rawValue }
+    var title: String { String(localized: String.LocalizationValue(rawValue)) }
 
     var symbol: String {
         switch self {
@@ -29,7 +30,7 @@ enum WidgetCategory: String, CaseIterable, Codable, Identifiable {
 enum WidgetKind: String, CaseIterable, Codable, Identifiable {
     case clock, worldClock, weather, nowPlaying
     case apps, folder, runningApps, search, downloads, fileShelf, bookmarks, trash
-    case calendar, reminders, todos, pomodoro, water, progress, notes
+    case calendar, reminders, todos, pomodoro, water, progress, notes, countdown
     case cpu, memory, battery, disk, network, toggles, volume
     case clipboard, screenshot, voiceMemo, emoji, colorPicker, calculator
     case github
@@ -39,40 +40,41 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
 
     var title: String {
         switch self {
-        case .clock: "Clock"
-        case .worldClock: "World Clock"
-        case .weather: "Weather"
-        case .nowPlaying: "Now Playing"
-        case .apps: "Favorite Apps"
-        case .folder: "App Folder"
-        case .runningApps: "App Switcher"
-        case .search: "Search"
-        case .downloads: "Downloads"
-        case .fileShelf: "File Shelf"
-        case .bookmarks: "Bookmarks"
-        case .trash: "Trash"
-        case .calendar: "Calendar"
-        case .reminders: "Reminders"
-        case .todos: "Todos"
-        case .pomodoro: "Pomodoro"
-        case .water: "Drink Water"
-        case .progress: "Progress"
-        case .notes: "Quick Note"
-        case .cpu: "CPU"
-        case .memory: "Memory"
-        case .battery: "Battery"
-        case .disk: "Storage"
-        case .network: "Network"
-        case .toggles: "Quick Toggles"
-        case .volume: "Audio"
-        case .clipboard: "Clipboard"
-        case .screenshot: "Screenshots"
-        case .voiceMemo: "Voice Memo"
-        case .emoji: "Emoji"
-        case .colorPicker: "Color Picker"
-        case .calculator: "Converter"
-        case .github: "GitHub"
-        case .claude: "Claude"
+        case .clock: String(localized: "Clock")
+        case .worldClock: String(localized: "World Clock")
+        case .weather: String(localized: "Weather")
+        case .nowPlaying: String(localized: "Now Playing")
+        case .apps: String(localized: "Favorite Apps")
+        case .folder: String(localized: "App Folder")
+        case .runningApps: String(localized: "App Switcher")
+        case .search: String(localized: "Search")
+        case .downloads: String(localized: "Downloads")
+        case .fileShelf: String(localized: "File Shelf")
+        case .bookmarks: String(localized: "Bookmarks")
+        case .trash: String(localized: "Trash")
+        case .calendar: String(localized: "Calendar")
+        case .reminders: String(localized: "Reminders")
+        case .todos: String(localized: "Todos")
+        case .pomodoro: String(localized: "Pomodoro")
+        case .water: String(localized: "Drink Water")
+        case .progress: String(localized: "Progress")
+        case .notes: String(localized: "Quick Note")
+        case .countdown: String(localized: "Countdown")
+        case .cpu: String(localized: "CPU")
+        case .memory: String(localized: "Memory")
+        case .battery: String(localized: "Battery")
+        case .disk: String(localized: "Storage")
+        case .network: String(localized: "Network")
+        case .toggles: String(localized: "Quick Toggles")
+        case .volume: String(localized: "Audio")
+        case .clipboard: String(localized: "Clipboard")
+        case .screenshot: String(localized: "Screenshots")
+        case .voiceMemo: String(localized: "Voice Memo")
+        case .emoji: String(localized: "Emoji")
+        case .colorPicker: String(localized: "Color Picker")
+        case .calculator: String(localized: "Converter")
+        case .github: String(localized: "GitHub")
+        case .claude: String(localized: "Claude")
         }
     }
 
@@ -97,6 +99,7 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
         case .water: "drop.fill"
         case .progress: "chart.pie.fill"
         case .notes: "note.text"
+        case .countdown: "hourglass"
         case .cpu: "cpu.fill"
         case .memory: "memorychip.fill"
         case .battery: "battery.75percent"
@@ -131,6 +134,7 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
         case .water: .blue
         case .progress: .mint
         case .notes: .yellow
+        case .countdown: .pink
         case .cpu: .blue
         case .memory: .purple
         case .battery: .green
@@ -152,7 +156,7 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
     var category: WidgetCategory {
         switch self {
         case .apps, .folder, .runningApps, .search, .downloads, .fileShelf, .bookmarks, .trash: .apps
-        case .clock, .worldClock, .calendar, .reminders, .todos, .pomodoro, .water, .progress, .notes: .productivity
+        case .clock, .worldClock, .calendar, .reminders, .todos, .pomodoro, .water, .progress, .notes, .countdown: .productivity
         case .cpu, .memory, .battery, .disk, .network, .toggles, .volume, .clipboard, .screenshot, .voiceMemo: .system
         case .weather, .nowPlaying: .media
         case .emoji, .colorPicker, .calculator: .utility
@@ -163,44 +167,45 @@ enum WidgetKind: String, CaseIterable, Codable, Identifiable {
 
     var summary: String {
         switch self {
-        case .clock: "Time and date with a month calendar."
-        case .worldClock: "Keep an eye on another city's time."
-        case .weather: "Current conditions and a 3‑day forecast."
-        case .nowPlaying: "Control YouTube Music, Spotify or Apple Music."
-        case .apps: "Launch your favorite apps in one click."
-        case .folder: "Group apps into a compact folder."
-        case .runningApps: "Switch between running apps."
-        case .search: "Find apps, files and the web instantly."
-        case .downloads: "Your most recent downloads."
-        case .fileShelf: "Park files temporarily, drag them out later."
-        case .bookmarks: "Open your favorite links."
-        case .trash: "Drop files to trash them, empty in a click."
-        case .calendar: "Your next event and the week ahead."
-        case .reminders: "Apple Reminders, ticked off from the Dock."
-        case .todos: "A fast local todo list."
-        case .pomodoro: "Focus sessions with breaks."
-        case .water: "Track glasses of water each day."
-        case .progress: "How far through the day, week, month or year."
-        case .notes: "Capture an idea before it's gone."
-        case .cpu: "Live processor load."
-        case .memory: "Live memory pressure."
-        case .battery: "Charge level and power source."
-        case .disk: "Free space on your startup disk."
-        case .network: "Live download and upload speed."
-        case .toggles: "Dark mode, keep awake, desktop icons, lock."
-        case .volume: "Output volume and mute."
-        case .clipboard: "Your recent clipboard history."
-        case .screenshot: "Capture areas, windows and screens."
-        case .voiceMemo: "One‑click audio recording."
-        case .emoji: "Your favorite emoji, one click to copy."
-        case .colorPicker: "Pick any color on screen, copy as hex."
-        case .calculator: "Calculator plus unit conversion."
-        case .github: "Followers and repos for a GitHub user."
-        case .claude: "Chat with Claude and view your artifacts."
+        case .clock: String(localized: "Time and date with a month calendar.")
+        case .worldClock: String(localized: "Keep an eye on another city's time.")
+        case .weather: String(localized: "Current conditions and a 3‑day forecast.")
+        case .nowPlaying: String(localized: "Control YouTube Music, Spotify or Apple Music.")
+        case .apps: String(localized: "Launch your favorite apps in one click.")
+        case .folder: String(localized: "Group apps into a compact folder.")
+        case .runningApps: String(localized: "Switch between running apps.")
+        case .search: String(localized: "Find apps, files and the web instantly.")
+        case .downloads: String(localized: "Your most recent downloads.")
+        case .fileShelf: String(localized: "Park files temporarily, drag them out later.")
+        case .bookmarks: String(localized: "Open your favorite links.")
+        case .trash: String(localized: "Drop files to trash them, empty in a click.")
+        case .calendar: String(localized: "Your next event and the week ahead.")
+        case .reminders: String(localized: "Apple Reminders, ticked off from the Dock.")
+        case .todos: String(localized: "A fast local todo list.")
+        case .pomodoro: String(localized: "Focus sessions with breaks.")
+        case .water: String(localized: "Track glasses of water each day.")
+        case .progress: String(localized: "How far through the day, week, month or year.")
+        case .notes: String(localized: "Capture an idea before it's gone.")
+        case .countdown: String(localized: "Days until the moment you're waiting for.")
+        case .cpu: String(localized: "Live processor load.")
+        case .memory: String(localized: "Live memory pressure.")
+        case .battery: String(localized: "Charge level and power source.")
+        case .disk: String(localized: "Free space on your startup disk.")
+        case .network: String(localized: "Live download and upload speed.")
+        case .toggles: String(localized: "Dark mode, keep awake, desktop icons, lock.")
+        case .volume: String(localized: "Output volume and mute.")
+        case .clipboard: String(localized: "Your recent clipboard history.")
+        case .screenshot: String(localized: "Capture areas, windows and screens.")
+        case .voiceMemo: String(localized: "One‑click audio recording.")
+        case .emoji: String(localized: "Your favorite emoji, one click to copy.")
+        case .colorPicker: String(localized: "Pick any color on screen, copy as hex.")
+        case .calculator: String(localized: "Calculator plus unit conversion.")
+        case .github: String(localized: "Followers and repos for a GitHub user.")
+        case .claude: String(localized: "Chat with Claude and view your artifacts.")
         }
     }
 
-    var allowsMultiple: Bool { self == .worldClock || self == .folder || self == .progress }
+    var allowsMultiple: Bool { self == .worldClock || self == .folder || self == .progress || self == .countdown }
 }
 
 struct WidgetItem: Codable, Identifiable, Hashable {
@@ -240,7 +245,13 @@ struct Bookmark: Codable, Identifiable, Hashable {
 enum DockPosition: String, Codable, CaseIterable, Identifiable {
     case bottom, top
     var id: String { rawValue }
-    var title: String { self == .bottom ? "Bottom" : "Top" }
+    var title: String { self == .bottom ? String(localized: "Bottom") : String(localized: "Top") }
+}
+
+enum DockDisplay: String, Codable, CaseIterable, Identifiable {
+    case main, pointer
+    var id: String { rawValue }
+    var title: String { self == .main ? String(localized: "Main display") : String(localized: "Follow the pointer") }
 }
 
 enum DockTheme: String, Codable, CaseIterable, Identifiable {
@@ -248,10 +259,10 @@ enum DockTheme: String, Codable, CaseIterable, Identifiable {
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .dark: "Midnight"
-        case .glass: "Glass"
-        case .light: "Light"
-        case .system: "Automatic"
+        case .dark: String(localized: "Midnight")
+        case .glass: String(localized: "Glass")
+        case .light: String(localized: "Light")
+        case .system: String(localized: "Automatic")
         }
     }
 }
@@ -259,7 +270,13 @@ enum DockTheme: String, Codable, CaseIterable, Identifiable {
 enum DockSize: String, Codable, CaseIterable, Identifiable {
     case small, medium, large
     var id: String { rawValue }
-    var title: String { rawValue.capitalized }
+    var title: String {
+        switch self {
+        case .small: String(localized: "Small")
+        case .medium: String(localized: "Medium")
+        case .large: String(localized: "Large")
+        }
+    }
     var scale: CGFloat {
         switch self {
         case .small: 0.84
@@ -290,10 +307,10 @@ enum MusicSource: String, Codable, CaseIterable, Identifiable {
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .youtubeMusic: "YouTube Music"
-        case .spotify: "Spotify"
-        case .appleMusic: "Apple Music"
-        case .automatic: "Automatic"
+        case .youtubeMusic: String(localized: "YouTube Music")
+        case .spotify: String(localized: "Spotify")
+        case .appleMusic: String(localized: "Apple Music")
+        case .automatic: String(localized: "Automatic")
         }
     }
 }
@@ -304,6 +321,7 @@ struct DockSettings: Codable, Equatable {
     var avoidMacDock = true
     var musicSource: MusicSource = .youtubeMusic
     var position: DockPosition = .bottom
+    var display: DockDisplay = .main
     var edgeMargin: Double = 8
     var theme: DockTheme = .dark
     var size: DockSize = .medium

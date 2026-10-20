@@ -72,6 +72,16 @@ These environment variables make development and screenshots safe:
 | `DOCKSIDE_ASK="question \|\| follow-up"` | Send Claude chat turns on launch |
 | `ANTHROPIC_BASE_URL`, `ANTHROPIC_API_KEY` | Point Claude chat at a proxy or local stub |
 
+## Translating Dockside
+
+Dockside ships in English, Spanish and Hindi. Translations live in `Resources/Localization/<lang>.lproj/Localizable.strings`.
+
+1. Run `python3 Scripts/extract-strings.py` — it regenerates English from the source and lists untranslated keys per language.
+2. To add a language, create `Resources/Localization/<code>.lproj/` (e.g. `fr.lproj`), run the script, then translate the values.
+3. Build with `./build.sh` and test with `open -a Dockside --args -AppleLanguages "(fr)"`.
+
+UI text in Swift should be a literal in a SwiftUI view (`Text("Hello")`) or `String(localized: "Hello")`, so the script can find it. Strings with interpolation (`"\(n) left"`) aren't extracted yet — converting them to proper format keys is a great first contribution.
+
 ## Code style
 
 - Match the surrounding code: SwiftUI views, small focused types, `private` by default.
