@@ -2,7 +2,7 @@
 
 All notable changes to Dockside are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [0.2.0-beta] — 2026-10-20
 
 ### Added
 - **Watch** widget: search YouTube and play videos inside the dock bar or in a floating picture-in-picture window; Netflix and JioHotstar in the same player (#6).
