@@ -2,6 +2,12 @@
 
 All notable changes to Dockside are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.2.1-beta] — 2026-10-20
+
+### Fixed
+- Dockside crashed when a Netflix or JioHotstar video went full screen, or when resizing the picture-in-picture window while one was playing. The PiP window reset its aspect ratio to 0:0, which AppKit traps on when it re-fits windows to the screen.
+- The PiP player no longer touches the video while a site is in full screen, and stopping a full-screen video exits full screen first.
+
 ## [0.2.0-beta] — 2026-10-20
 
 ### Added

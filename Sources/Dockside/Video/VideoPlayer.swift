@@ -74,6 +74,10 @@ final class VideoPlayer: NSObject, ObservableObject, WKScriptMessageHandler, WKN
     var isActive: Bool { placement != .none }
     var progress: Double { duration > 0 ? min(1, position / duration) : 0 }
     private var progressTimer: Timer?
+    /// True while WebKit shows a page's video full screen. WebKit moves the web view into its own window then,
+    /// so Dockside must not move it anywhere until full screen ends.
+    @Published private(set) var inFullscreen = false
+    private var fullscreenObserver: NSKeyValueObservation?
 
     static let safariUA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15"
 
@@ -104,12 +108,18 @@ final class VideoPlayer: NSObject, ObservableObject, WKScriptMessageHandler, WKN
         webView.navigationDelegate = self
         webView.uiDelegate = self
 
+        fullscreenObserver = webView.observe(\.fullscreenState, options: [.initial, .new]) { [weak self] web, _ in
+            let busy = web.fullscreenState != .notInFullscreen
+            DispatchQueue.main.async { self?.inFullscreen = busy }
+        }
+
         // YouTube's own controls are hidden, so poll its time for Dockside's progress bars.
         progressTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in self?.pollProgress() }
 
         NotificationCenter.default.addObserver(forName: .docksideDockDidHide, object: nil, queue: .main) { [weak self] _ in
             // Keep the picture when the dock slides away mid-video.
-            guard let self, self.placement == .docked, self.isPlaying, Store.shared.settings.videoPopOutOnHide else { return }
+            guard let self, self.placement == .docked, self.isPlaying, !self.inFullscreen,
+                  Store.shared.settings.videoPopOutOnHide else { return }
             self.setPlacement(.floating)
         }
     }
@@ -181,6 +191,17 @@ final class VideoPlayer: NSObject, ObservableObject, WKScriptMessageHandler, WKN
     }
 
     func stop() {
+        guard webView.fullscreenState == .notInFullscreen else {
+            // Unloading the page mid full screen leaves WebKit's full-screen window half torn down.
+            webView.closeAllMediaPresentations { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { self?.finishStop() }
+            }
+            return
+        }
+        finishStop()
+    }
+
+    private func finishStop() {
         webView.evaluateJavaScript("document.querySelectorAll('video').forEach(function(v){ v.pause(); })")
         webView.load(URLRequest(url: URL(string: "about:blank")!))
         isPlaying = false
@@ -324,6 +345,9 @@ struct VideoSlot: NSViewRepresentable {
 
     func updateNSView(_ v: Container, context: Context) {
         let web = player.webView
+        // While WebKit is entering, in or leaving full screen the web view lives in WebKit's own window.
+        // Pulling it back here mid-transition corrupts AppKit's view tree (and crashes on the next resize).
+        guard !player.inFullscreen, web.fullscreenState == .notInFullscreen else { return }
         if player.placement == placement, web.superview !== v {
             web.removeFromSuperview()
             web.frame = v.bounds
@@ -347,9 +371,9 @@ final class PiPWindowController: NSObject, NSWindowDelegate {
             p.contentAspectRatio = NSSize(width: 16, height: 9)
             if !p.isVisible { p.setFrame(NSRect(x: vf.maxX - 500, y: vf.minY + 120, width: 480, height: 270), display: false) }
         } else {
+            // Setting resize increments is how AppKit drops an aspect ratio. Never assign a 0:0 aspect ratio:
+            // AppKit traps on it when a full-screen switch re-fits the window to the screen.
             p.contentResizeIncrements = NSSize(width: 1, height: 1)
-            p.resizeIncrements = NSSize(width: 1, height: 1)
-            p.contentAspectRatio = .zero
             if !p.isVisible || p.frame.width < 700 {
                 p.setFrame(NSRect(x: vf.midX - 460, y: vf.minY + 120, width: 920, height: min(580, vf.height - 140)), display: false)
             }
